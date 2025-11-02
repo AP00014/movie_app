@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
 import Header from './components/common/Header'
 import HomePage from './pages/HomePage'
 import MoviesPage from './pages/MoviesPage'
@@ -32,6 +33,21 @@ import './styles/cards.css'
 import './styles/profile.css'
 
 function App() {
+  useEffect(() => {
+    // Handle GitHub Pages routing
+    const handleGitHubPagesRedirect = () => {
+      const path = window.location.pathname;
+      if (path.startsWith('/movie_app')) {
+        const newPath = path.replace('/movie_app', '');
+        if (newPath && newPath !== path) {
+          window.history.replaceState(null, '', newPath || '/');
+        }
+      }
+    };
+
+    handleGitHubPagesRedirect();
+  }, []);
+
   return (
     <AuthProvider>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
