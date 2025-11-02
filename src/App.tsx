@@ -67,7 +67,7 @@ function App() {
             
             {/* Public Routes */}
             <Route path="/" element={
-               <ProtectedRoute requireAuth>
+               <ProtectedRoute requireAuth={false}>
                  <>
                    <Header />
                    <main className="main-content">
@@ -79,7 +79,7 @@ function App() {
                </ProtectedRoute>
              } />
             <Route path="/movies" element={
-               <ProtectedRoute requireAuth>
+               <ProtectedRoute requireAuth={false}>
                  <>
                    <Header />
                    <main className="main-content">
@@ -91,7 +91,7 @@ function App() {
                </ProtectedRoute>
              } />
             <Route path="/movies/:id" element={
-               <ProtectedRoute requireAuth>
+               <ProtectedRoute requireAuth={false}>
                  <>
                    <Header />
                    <main className="main-content">
@@ -123,7 +123,7 @@ function App() {
               </>
             } />
             <Route path="/profile" element={
-              <ProtectedRoute requireAuth>
+              <ProtectedRoute requireAuth={true}>
                 <>
                   <Header />
                   <main className="main-content">
@@ -135,7 +135,7 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/watchlist" element={
-              <ProtectedRoute requireAuth>
+              <ProtectedRoute requireAuth={true}>
                 <>
                   <Header />
                   <main className="main-content">
@@ -147,7 +147,7 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/library" element={
-              <ProtectedRoute requireAuth>
+              <ProtectedRoute requireAuth={true}>
                 <>
                   <Header />
                   <main className="main-content">
@@ -159,7 +159,7 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/history" element={
-              <ProtectedRoute requireAuth>
+              <ProtectedRoute requireAuth={true}>
                 <>
                   <Header />
                   <main className="main-content">
