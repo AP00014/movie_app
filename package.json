@@ -1,6 +1,6 @@
 {
    "name": "movie_app",
-  "homepage": " https://ap00014.github.io/movie_app/",
+  "homepage": "https://ap00014.github.io/movie_app/",
   "description": "A movie app to explore and manage your favorite films.",
   "private": true,
   "version": "0.0.0",
