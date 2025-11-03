@@ -1,1 +1,0 @@
-import{a as e,c as t,i as n,o as r,r as i,s as a}from"./index-CLa-jXXj.js";t();export{i as Headers,n as Request,e as Response,r as default,a as fetch};
