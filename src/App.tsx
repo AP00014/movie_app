@@ -34,18 +34,20 @@ import './styles/profile.css'
 
 function App() {
   useEffect(() => {
-    // Handle GitHub Pages routing
-    const handleGitHubPagesRedirect = () => {
-      const path = window.location.pathname;
-      if (path.startsWith('/movie_app')) {
-        const newPath = path.replace('/movie_app', '');
-        if (newPath && newPath !== path) {
-          window.history.replaceState(null, '', newPath || '/');
+    // Handle GitHub Pages routing only in production
+    if (import.meta.env.PROD) {
+      const handleGitHubPagesRedirect = () => {
+        const path = window.location.pathname;
+        if (path.startsWith('/movie_app')) {
+          const newPath = path.replace('/movie_app', '');
+          if (newPath && newPath !== path) {
+            window.history.replaceState(null, '', newPath || '/');
+          }
         }
-      }
-    };
+      };
 
-    handleGitHubPagesRedirect();
+      handleGitHubPagesRedirect();
+    }
   }, []);
 
   return (
