@@ -12,7 +12,18 @@ import Link from 'next/link';
 import AdminSidebar from '@/app/components/AdminSidebar/AdminSidebar';
 import '../AdminLayout.css';
 
+import { Suspense } from 'react';
+// ... previous imports
+
 export default function AdminContentPage() {
+    return (
+        <Suspense fallback={<div className="p-10">Loading...</div>}>
+            <AdminContentContent />
+        </Suspense>
+    );
+}
+
+function AdminContentContent() {
   const { user, role, isLoading, signOut } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -30,7 +41,7 @@ export default function AdminContentPage() {
       videoUrl: '',
       description: ''
   });
-
+  // ...
   const [contentList, setContentList] = useState<any[]>([]);
 
   // Protect Route
