@@ -13,6 +13,8 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<{ error: AuthError | Error | null }>;
   signOut: () => Promise<void>;
   role: string | null;
+  isAuthModalOpen: boolean;
+  setAuthModalOpen: (isOpen: boolean) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -22,6 +24,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [role, setRole] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAuthModalOpen, setAuthModalOpen] = useState(false);
   
   const supabase = useMemo(() => createClient(), []);
   const isConfigured = supabase !== null;
@@ -116,7 +119,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, isLoading, isConfigured, signUp, signIn, signOut, role }}>
+    <AuthContext.Provider value={{ 
+        user, session, isLoading, isConfigured, signUp, signIn, signOut, role,
+        isAuthModalOpen, setAuthModalOpen 
+    }}>
       {children}
     </AuthContext.Provider>
   );

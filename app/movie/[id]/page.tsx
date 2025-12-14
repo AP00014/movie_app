@@ -7,12 +7,22 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { usePlayer } from '@/app/context/PlayerContext'; // Updated import
+import { useAuth } from '@/app/context/AuthContext';
 import './MoviePage.css';
 
 export default function MovieDetail({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
   const { id } = use(params);
   const { playMedia } = usePlayer(); // Use global player
+  const { user, setAuthModalOpen } = useAuth(); // Auth context
+
+  const handlePlay = (mediaItem: any) => {
+    if (!user) {
+      setAuthModalOpen(true); // Open login modal if not signed in
+      return;
+    }
+    playMedia(mediaItem);
+  };
   
   // Logic to determine content type (Mocked for demo)
   const isSeries = ['money-heist', 'spartacus', 'merlin', 'got'].includes(id) || id.includes('series');
@@ -142,7 +152,7 @@ export default function MovieDetail({ params }: { params: Promise<{ id: string }
 
              {/* Action Buttons */}
              <div className="primary-actions">
-                 <button className="content-play-btn" onClick={() => playMedia({
+                 <button className="content-play-btn" onClick={() => handlePlay({
                      id: data.title + Date.now(),
                      title: data.title,
                      src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
@@ -222,7 +232,7 @@ export default function MovieDetail({ params }: { params: Promise<{ id: string }
                       <ChevronRight size={16} className="rotate-90" />
                   </div>
                   {episodes.map((ep) => (
-                      <div className="episode-item" key={ep.ep} onClick={() => playMedia({
+                      <div className="episode-item" key={ep.ep} onClick={() => handlePlay({
                         id: ep.title + ep.ep,
                         title: `${isSeries ? `S${selectedSeason}:E${ep.ep} ` : ''}${ep.title}`,
                         src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",

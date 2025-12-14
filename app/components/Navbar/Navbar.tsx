@@ -5,6 +5,7 @@ import { Search, Play, Bell, X, Clock, TrendingUp, Film, Tv, Music, Sparkles, Ar
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { searchContent, getPopularSuggestions, getRecentSearches, SearchItem } from '@/app/lib/searchData';
 import { useAuth } from '@/app/context/AuthContext';
+// AuthModal moved to ClientLayout
 import './Navbar.css';
 
 type SearchContext = 'movie' | 'series' | 'music' | 'animation' | 'shorts' | 'trending' | 'all';
@@ -12,7 +13,7 @@ type SearchContext = 'movie' | 'series' | 'music' | 'animation' | 'shorts' | 'tr
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, role } = useAuth();
+  const { user, role, isAuthModalOpen, setAuthModalOpen } = useAuth();
   const [isVisible, setIsVisible] = useState(true);
 
   // Hide Navbar on Admin/Superadmin pages
@@ -336,17 +337,6 @@ export default function Navbar() {
              <div className="notification-dot">3</div>
            </div>
            
-           {user ? (
-             <Link href="/account" className="icon-btn-glass profile-btn-nav">
-               <div className="nav-avatar-small">
-                 {user.user_metadata?.full_name ? user.user_metadata.full_name[0].toUpperCase() : 'U'}
-               </div>
-             </Link>
-           ) : (
-             <button className="btn-primary-small" onClick={() => {}} style={{marginLeft: '10px'}}>
-               Sign In
-             </button>
-           )}
         </div>
       </div>
       

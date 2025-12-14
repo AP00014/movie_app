@@ -23,8 +23,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 12px 16px 4px 16px; /* Reduced bottom padding */
   gap: 12px;
+  flex-wrap: nowrap; /* Ensure they stay on one line */
+}
+
+.logo, .top-actions {
+  flex-shrink: 0; /* Prevent them from squishing */
 }
 
 .logo-circle {
@@ -345,7 +350,7 @@
 .nav-tabs {
   display: flex;
   gap: 24px;
-  padding: 8px 16px;
+  padding: 0 16px 8px 16px; /* Reduced top padding */
   overflow-x: auto;
   white-space: nowrap;
   font-size: 16px;
@@ -542,6 +547,15 @@
 
 /* ========== Mobile Specific ========== */
 @media (max-width: 480px) {
+    .search-bar {
+        padding: 4px 8px 4px 12px; /* Reduced padding */
+        height: 36px; /* Explicit smaller height */
+    }
+    
+    .search-bar input {
+        font-size: 13px;
+    }
+
     .context-badge span {
         display: none;
     }

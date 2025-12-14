@@ -7,6 +7,8 @@ import { AuthProvider } from '@/app/context/AuthContext';
 import { PlayerProvider } from '@/app/context/PlayerContext';
 import GlobalPlayer from '../GlobalPlayer/GlobalPlayer';
 
+import AuthModalWrapper from '../AuthModal/AuthModalWrapper';
+
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   
@@ -20,6 +22,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     return (
         <AuthProvider>
             <PlayerProvider>
+                <AuthModalWrapper />
                 {children}
                 <GlobalPlayer />
             </PlayerProvider>
@@ -28,12 +31,18 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   }
 
   if (isAdmin) {
-    return <AuthProvider>{children}</AuthProvider>;
+    return (
+      <AuthProvider>
+        <AuthModalWrapper />
+        {children}
+      </AuthProvider>
+    );
   }
 
   return (
     <AuthProvider>
       <PlayerProvider>
+          <AuthModalWrapper />
           <div className={isShorts ? 'shorts-navbar-wrapper' : 'main-navbar-wrapper'}>
              <Navbar />
           </div>

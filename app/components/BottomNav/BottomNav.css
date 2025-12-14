@@ -81,8 +81,9 @@
 /* Mobile tweak: ensure it sits well */
 @media (max-width: 480px) {
   .bottom-nav {
-    width: 94%;
-    bottom: 15px; /* Slightly lower on small screens */
+    width: 96%; /* Slightly wider */
+    bottom: 2px; /* Very close to bottom */
+    border-radius: 20px; /* Less curve for bottom fit */
   }
 }
 
