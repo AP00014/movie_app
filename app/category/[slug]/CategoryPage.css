@@ -1,0 +1,151 @@
+
+.category-page-container {
+    padding: 80px 20px 100px 20px; /* Space for Navbar and BottomNav */
+    min-height: 100vh;
+    background-color: #0f1014;
+    color: white;
+}
+
+.category-header {
+    display: flex;
+;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.back-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.back-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.category-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+    padding-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+    .category-page-container {
+        padding: 100px 40px 40px 120px; /* Shift for PC sidebar */
+    }
+    
+    .category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 24px;
+    }
+}
+
+.grid-item {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.poster-wrap {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 2/3;
+    margin-bottom: 8px;
+}
+
+.poster-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.grid-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 12px;
+}
+
+.grid-item:hover .grid-item-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.grid-play-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+
+.grid-meta {
+    font-size: 11px;
+    color: #ddd;
+}
+
+.match-score {
+    color: #46d369;
+    font-weight: 700;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.row-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.meta-tag {
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 2px;
+    padding: 0 4px;
+    font-size: 10px;
+}
+
+.grid-item-title {
+    font-size: 14px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #e5e5e5;
+}

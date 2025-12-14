@@ -1,0 +1,245 @@
+
+/* Update: Ensure Navbar overlays the shorts */
+.shorts-navbar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 500;
+}
+
+/* Navbar Transparency for shorts */
+.shorts-navbar-wrapper .navbar-container {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    backdrop-filter: none; 
+    border-bottom: none;
+}
+
+/* Main Container */
+.shorts-page-container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  background-color: black;
+  position: relative;
+  scrollbar-width: none; 
+}
+
+.shorts-page-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual Video Item */
+.short-item-snap-container {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  scroll-snap-align: start; /* Snap to top */
+  position: relative;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevent spillover */
+}
+
+/* PC Blurred Background */
+.pc-blur-bg {
+    display: none; /* Hidden on mobile */
+}
+
+@media (min-width: 1024px) {
+    .pc-blur-bg {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        filter: blur(80px) brightness(0.4);
+        z-index: 0;
+        transform: scale(1.1); /* Ensure edges are covered */
+    }
+}
+
+/* Video Wrapper */
+.short-video-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1; /* Above bg */
+}
+
+.short-video-el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+    .short-video-wrapper {
+        width: auto;
+        height: 90vh; /* Slightly smaller than full screen for aesthetic floating look */
+        aspect-ratio: 9/16;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .short-video-el {
+        border-radius: 20px;
+    }
+}
+
+/* Play Icon */
+.play-icon-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    padding: 24px;
+    pointer-events: none;
+    animation: quickFade 0.2s ease-out;
+}
+
+@keyframes quickFade {
+    from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* Overlay UI */
+.short-overlay-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    z-index: 2; /* Content above video */
+}
+
+@media (min-width: 1024px) {
+    /* Constrain UI to the phone frame */
+    .short-overlay-ui {
+         width: auto;
+         height: 90vh; /* Match video wrapper */
+         aspect-ratio: 9/16;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         overflow: hidden;
+         border-radius: 20px;
+    }
+}
+
+/* Right Actions */
+.short-actions-bar {
+    position: absolute;
+    bottom: 150px; /* Space from bottom */
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.action-btn:hover {
+    transform: scale(1.2);
+}
+
+.action-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Album Art Spin */
+.album-art-spin {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 4px solid #1a1a1a;
+    background: #111;
+    overflow: hidden;
+    animation: spinVinyl 6s linear infinite;
+    margin-top: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.album-art-spin img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes spinVinyl {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Bottom Info */
+.short-bottom-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 20px 90px 20px; /* Extra bottom padding for mobile nav */
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    pointer-events: auto;
+    text-align: left;
+}
+
+.user-row {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     margin-bottom: 12px;
+}
+
+.user-avatar-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid white;
+}
+
+.channel-name {
+    font-weight: 800;
+    font-size: 16px;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+
+
+.description-text {
+    font-size: 15px;
+    color: #e0e0e0;
+    line-height: 1.4;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    max-width: 85%;
+}

@@ -1,0 +1,175 @@
+.seasonal-container {
+  margin: 20px 0;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.seasonal-banner {
+  margin: 0 16px 16px 16px;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(42, 82, 152, 0.4);
+}
+
+.snow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+      radial-gradient(4px 4px at 20px 30px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(6px 6px at 150px 80px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(3px 3px at 80px 120px, rgba(255,255,255,0.7), transparent);
+  animation: snowFall 10s linear infinite;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+@keyframes snowFall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100px); }
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+}
+
+.season-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.spin-slow {
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+.season-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.season-subtitle {
+  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+}
+
+.gift-icon-bg {
+  position: absolute;
+  bottom: -10px;
+  right: -5px;
+  color: rgba(255,255,255,0.1);
+  transform: rotate(-10deg);
+  width: 80px;
+  height: 80px;
+}
+
+.season-rail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  margin-bottom: 12px;
+}
+
+.rail-title {
+  font-size: 16px;
+  color: white;
+  font-weight: 700;
+}
+
+.see-more {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.season-rail {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.season-rail::-webkit-scrollbar { display: none; }
+
+.season-card {
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.img-box {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 160px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.season-card:hover .img-box img {
+  transform: scale(1.1);
+}
+
+.frost-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(176, 196, 222, 0.4), transparent);
+  pointer-events: none;
+}
+
+.card-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #d90429;
+  color: white;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.season-movie-title {
+  font-size: 13px;
+  color: #ccc;
+  font-weight: 500;
+  text-align: center;
+}

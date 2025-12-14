@@ -1,0 +1,521 @@
+.content-detail-container {
+  background-color: #000;
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.content-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+}
+
+.nav-back-arrow {
+  cursor: pointer;
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  background: #00d4ff;
+  border-radius: 4px;
+}
+
+/* Hero Section */
+.content-hero {
+  position: relative;
+  width: 100%;
+  min-height: 85vh; /* Extend to cover most of mobile screen */
+}
+
+.hero-poster-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60vh; /* Image only takes top part */
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.hero-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+      rgba(0,0,0,0.1) 0%, 
+      rgba(0,0,0,0.3) 50%, 
+      #000 100%);
+}
+
+.hero-content {
+  position: relative;
+  padding: 55vh 20px 0 20px; /* Push content down to overlap properly */
+  z-index: 10;
+}
+
+.hero-title {
+  font-size: 36px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  line-height: 1;
+}
+
+.meta-info-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.match-score {
+  color: #46d369; /* Match Green */
+  font-weight: 700;
+}
+
+.year { color: #bcbcbc; }
+
+.maturity-rating {
+  background: #333;
+  padding: 0 5px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 11px;
+}
+
+.hd-badge {
+  border: 1px solid rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.9);
+  padding: 0 4px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Buttons */
+.primary-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.content-play-btn {
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.content-download-btn {
+  background: rgba(42,42,42, 0.95);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.content-description {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.content-credits {
+  font-size: 11px;
+  color: #777;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.content-credits span {
+  color: #777;
+}
+
+.content-credits .more {
+  font-weight: 700;
+  color: #ccc;
+  cursor: pointer;
+}
+
+/* Interactions */
+.interaction-row {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.action-item span {
+  font-size: 10px;
+  color: #aaa;
+}
+
+/* Sections */
+.content-section {
+    padding: 0 10px;
+    margin-top: 10px;
+}
+
+.section-tabs {
+    display: flex;
+    gap: 20px;
+    border-top: 1px solid #404040;
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+
+.section-tabs span {
+    font-size: 14px;
+    font-weight: 700;
+    color: #999;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 15px; /* for indicator */
+    cursor: pointer;
+}
+
+.section-tabs .active-tab {
+    color: white;
+    border-top: 4px solid #00d4ff; /* Brand accent color */
+    padding-top: 11px; /* compensate border */
+    margin-top: -16px; /* pull up to overlap border */
+}
+
+/* Grid */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding-bottom: 40px;
+}
+
+.content-grid-item {
+    aspect-ratio: 2/3;
+    background: #222;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.content-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.grid-overlay {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.grid-match {
+    background: #00d4ff;
+    color: white;
+    font-size: 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-weight: 700;
+    display: none; /* Only show on some? */
+}
+
+/* NEW STYLES FROM HERE DOWN */
+
+.details-view {
+  padding: 10px 10px 40px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.detail-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail-column h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.detail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-size: 13px;
+  color: #777;
+}
+
+.detail-value {
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.detail-value.text-sm {
+  font-size: 13px;
+  color: #ddd;
+}
+
+.tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.detail-tag {
+  font-size: 12px;
+  color: #d1d1d1;
+}
+.detail-tag::after {
+  content: ',';
+  color: #777;
+}
+.detail-tag:last-child::after {
+  content: '';
+}
+
+/* Rating Box */
+.rating-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.rating-badge-large {
+  border: 1px solid white;
+  padding: 2px 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.rating-text {
+  font-size: 13px;
+  color: #ddd;
+}
+
+/* Top 10 Badge in Hero */
+.top-10-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.top-10-box {
+  background: #00d4ff;
+  color: white;
+  font-size: 10px;
+  line-height: 1;
+  padding: 4px;
+  text-align: center;
+  font-weight: 900;
+  border-radius: 2px;
+}
+
+/* Tech Badges */
+.tech-badge {
+  border: 1px solid #777;
+  color: #ccc;
+  padding: 0 4px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Credit lines in hero */
+.content-credits-short {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 25px;
+}
+
+.credit-line {
+  font-size: 12px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.credit-line span {
+  color: #777;
+  margin-right: 4px;
+}
+
+/* Series Specific Styles */
+.episodes-container {
+    padding: 0 10px 40px 10px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.season-selector {
+    background: #2a2a2a;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.rotate-90 {
+    transform: rotate(90deg);
+}
+
+.episode-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    align-items: flex-start;
+}
+
+.ep-poster {
+    width: 120px;
+    height: 68px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.ep-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-overlay-small {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.6);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+}
+
+.ep-info {
+    flex: 1;
+}
+
+.ep-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.ep-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+}
+
+.ep-time {
+    font-size: 12px;
+    color: #ccc;
+}
+
+.ep-desc {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Series Badge Tag */
+.series-tag-badge {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: #00d4ff;
+    color: white;
+    font-size: 8px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-weight: 700;
+}
