@@ -35,7 +35,7 @@ export default function AdminSeriesPage() {
        <AdminSidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
 
        <main className="admin-main">
-            <AdminContentManager contentType="series" title="Series" />
+            <AdminContentManager contentType="series" title="Series" addPath="/admin/content/series/new" />
        </main>
     </div>
   );

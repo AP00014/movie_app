@@ -4,6 +4,8 @@ import { usePathname } from 'next/navigation';
 import Navbar from '../Navbar/Navbar';
 import BottomNav from '../BottomNav/BottomNav';
 import { AuthProvider } from '@/app/context/AuthContext';
+import { PlayerProvider } from '@/app/context/PlayerContext';
+import GlobalPlayer from '../GlobalPlayer/GlobalPlayer';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -15,7 +17,14 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const isAdmin = pathname.startsWith('/admin') || pathname.startsWith('/superadmin');
 
   if (isMovieDetail) {
-    return <AuthProvider>{children}</AuthProvider>;
+    return (
+        <AuthProvider>
+            <PlayerProvider>
+                {children}
+                <GlobalPlayer />
+            </PlayerProvider>
+        </AuthProvider>
+    );
   }
 
   if (isAdmin) {
@@ -24,13 +33,16 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <AuthProvider>
-      <div className={isShorts ? 'shorts-navbar-wrapper' : 'main-navbar-wrapper'}>
-         <Navbar />
-      </div>
-      
-      {children}
-      
-      <BottomNav />
+      <PlayerProvider>
+          <div className={isShorts ? 'shorts-navbar-wrapper' : 'main-navbar-wrapper'}>
+             <Navbar />
+          </div>
+          
+          {children}
+          
+          <GlobalPlayer />
+          <BottomNav />
+      </PlayerProvider>
     </AuthProvider>
   );
 }

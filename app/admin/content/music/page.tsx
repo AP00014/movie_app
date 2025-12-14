@@ -35,7 +35,7 @@ export default function AdminMusicPage() {
        <AdminSidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
 
        <main className="admin-main">
-            <AdminContentManager contentType="music" title="Music" />
+            <AdminContentManager contentType="music" title="Music" addPath="/admin/content/music/new" />
        </main>
     </div>
   );

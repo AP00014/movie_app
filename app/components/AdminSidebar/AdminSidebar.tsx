@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useAuth } from '@/app/context/AuthContext';
 import { 
   LayoutDashboard, Users, Film, FileText, Settings, LogOut, 
-  X, ChevronDown, ChevronRight, Video, Music, MonitorPlay, Zap
+  X, ChevronDown, ChevronRight, Video, Music, MonitorPlay, Zap, Globe, LayoutTemplate
 } from 'lucide-react';
 import '../../admin/AdminLayout.css'; // Ensure we have styles
 
@@ -77,12 +77,19 @@ export default function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
                    )}
                </div>
 
+               <Link href="/admin/appearance" className={`nav-link ${isActive('/admin/appearance') ? 'active' : ''}`}>
+                   <LayoutTemplate size={18} /> <span>Site Appearance</span>
+               </Link>
+
                <Link href="/admin/reports" className={`nav-link ${isActive('/admin/reports') ? 'active' : ''}`}>
                    <FileText size={18} /> <span>Reports</span>
                </Link>
            </nav>
            
            <div className="sidebar-footer">
+                <Link href="/" className="nav-link" style={{marginBottom:'5px'}}>
+                   <Globe size={18} /> <span>View Site</span>
+               </Link>
                 <div onClick={() => signOut()} className="nav-link" style={{cursor:'pointer', color:'#ef4444'}}>
                    <LogOut size={18} /> <span>Logout</span>
                </div>

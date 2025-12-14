@@ -35,7 +35,7 @@ export default function AdminMoviesPage() {
        <AdminSidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
 
        <main className="admin-main">
-            <AdminContentManager contentType="movie" title="Movies" />
+            <AdminContentManager contentType="movie" title="Movies" addPath="/admin/content/movies/new" />
        </main>
     </div>
   );

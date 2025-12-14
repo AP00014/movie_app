@@ -35,7 +35,7 @@ export default function AdminShortsPage() {
        <AdminSidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
 
        <main className="admin-main">
-            <AdminContentManager contentType="shorts" title="Shorts" />
+            <AdminContentManager contentType="shorts" title="Shorts" addPath="/admin/content/shorts/new" />
        </main>
     </div>
   );

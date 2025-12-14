@@ -6,13 +6,13 @@ import {
   Check, Volume2, VolumeX, Info, Calendar, ChevronRight
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
+import { usePlayer } from '@/app/context/PlayerContext'; // Updated import
 import './MoviePage.css';
 
 export default function MovieDetail({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
   const { id } = use(params);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { playMedia } = usePlayer(); // Use global player
   
   // Logic to determine content type (Mocked for demo)
   const isSeries = ['money-heist', 'spartacus', 'merlin', 'got'].includes(id) || id.includes('series');
@@ -101,15 +101,7 @@ export default function MovieDetail({ params }: { params: Promise<{ id: string }
       { ep: 3, title: "Misfire", time: "50m", desc: "Police grab an image of the face of one of the robbers. Berlin and Denver argue.", img: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" },
   ];
 
-  if (isPlaying) {
-    return (
-      <VideoPlayer 
-        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" 
-        title={data.title} 
-        onClose={() => setIsPlaying(false)} 
-      />
-    );
-  }
+  /* REMOVED: Local VideoPlayer rendering */
 
   return (
     <div className="content-detail-container">
@@ -150,7 +142,12 @@ export default function MovieDetail({ params }: { params: Promise<{ id: string }
 
              {/* Action Buttons */}
              <div className="primary-actions">
-                 <button className="content-play-btn" onClick={() => setIsPlaying(true)}>
+                 <button className="content-play-btn" onClick={() => playMedia({
+                     id: data.title + Date.now(),
+                     title: data.title,
+                     src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                     type: 'video'
+                 })}>
                     <Play fill="black" size={24} />
                     <span>Play</span>
                  </button>
@@ -225,7 +222,12 @@ export default function MovieDetail({ params }: { params: Promise<{ id: string }
                       <ChevronRight size={16} className="rotate-90" />
                   </div>
                   {episodes.map((ep) => (
-                      <div className="episode-item" key={ep.ep} onClick={() => setIsPlaying(true)}>
+                      <div className="episode-item" key={ep.ep} onClick={() => playMedia({
+                        id: ep.title + ep.ep,
+                        title: `${isSeries ? `S${selectedSeason}:E${ep.ep} ` : ''}${ep.title}`,
+                        src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                        type: 'video'
+                      })}>
                           <div className="ep-poster">
                               <img src={ep.img} alt={ep.title} />
                               <div className="play-overlay-small"><Play fill="white" size={16} /></div>

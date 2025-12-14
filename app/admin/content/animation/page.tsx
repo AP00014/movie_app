@@ -35,7 +35,7 @@ export default function AdminAnimationPage() {
        <AdminSidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
 
        <main className="admin-main">
-            <AdminContentManager contentType="animation" title="Animations" />
+            <AdminContentManager contentType="animation" title="Animations" addPath="/admin/content/animation/new" />
        </main>
     </div>
   );

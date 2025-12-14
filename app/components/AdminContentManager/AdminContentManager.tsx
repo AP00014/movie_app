@@ -9,11 +9,12 @@ import { useAuth } from '@/app/context/AuthContext';
 import Link from 'next/link';
 
 interface Props {
-  contentType: string; // 'movie' | 'series' | 'music' | 'animation' | 'shorts'
+  contentType: string;
   title: string;
+  addPath?: string; // If provided, button redirects instead of opening modal
 }
 
-export default function AdminContentManager({ contentType, title }: Props) {
+export default function AdminContentManager({ contentType, title, addPath }: Props) {
   const { user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   
@@ -61,10 +62,17 @@ export default function AdminContentManager({ contentType, title }: Props) {
            <div className="page-title">{title}</div>
            <div className="header-actions">
                <div style={{display:'flex', gap:'10px'}}>
-                   <button className="header-btn" onClick={() => setIsModalOpen(true)} 
-                           style={{width:'auto', padding:'0 20px', background:'#3b82f6', color:'white', border:'none', borderRadius:'8px', fontWeight:600, gap:'8px'}}>
-                       <Plus size={18} /> Add {contentType}
-                   </button>
+                   {addPath ? (
+                        <Link href={addPath} className="header-btn" 
+                           style={{width:'auto', padding:'0 20px', background:'#3b82f6', color:'white', border:'none', borderRadius:'8px', fontWeight:600, gap:'8px', display:'flex', alignItems:'center', textDecoration:'none', fontSize:'14px'}}>
+                           <Plus size={18} /> Add {contentType}
+                        </Link>
+                   ) : (
+                       <button className="header-btn" onClick={() => setIsModalOpen(true)} 
+                               style={{width:'auto', padding:'0 20px', background:'#3b82f6', color:'white', border:'none', borderRadius:'8px', fontWeight:600, gap:'8px'}}>
+                           <Plus size={18} /> Add {contentType}
+                       </button>
+                   )}
                </div>
                <Link href="/account" className="user-snippet">
                     <div className="snippet-avatar">
@@ -102,7 +110,15 @@ export default function AdminContentManager({ contentType, title }: Props) {
                <div style={{padding:'60px', textAlign:'center', color:'#94a3b8'}}>
                    <Film size={48} style={{margin:'0 auto 20px', opacity:0.2}} />
                    <div>No {contentType} content found.</div>
-                   <button onClick={() => setIsModalOpen(true)} style={{marginTop:'15px', color:'#3b82f6', background:'none', border:'none', cursor:'pointer', textDecoration:'underline'}}>Add first {contentType}</button>
+                   {addPath ? (
+                       <Link href={addPath} style={{marginTop:'15px', display:'inline-block', color:'#3b82f6', cursor:'pointer', textDecoration:'underline'}}>
+                           Add first {contentType}
+                       </Link>
+                   ) : (
+                       <button onClick={() => setIsModalOpen(true)} style={{marginTop:'15px', color:'#3b82f6', background:'none', border:'none', cursor:'pointer', textDecoration:'underline'}}>
+                           Add first {contentType}
+                       </button>
+                   )}
                </div>
            )}
        </div>
